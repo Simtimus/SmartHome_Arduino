@@ -15,7 +15,7 @@
 class SendingService
 {
 public:
-	SendingService(UdpCommunication &UdpComm, EepromString &Eeprom, ComponentManager &CompManager, ClientData &Client, Board &Board);
+	SendingService(UdpCommunication &UdpComm, ComponentManager &CompManager, ClientData &Client, Board &Board);
 
 	void runService();
 
@@ -31,7 +31,6 @@ public:
 private:
 	bool wakedUp = true;
 	UdpCommunication udpComm;
-	EepromString eeprom;
 	ComponentManager compManager;
 	ClientData client;
 	Board board;

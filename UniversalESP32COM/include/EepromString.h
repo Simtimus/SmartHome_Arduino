@@ -10,7 +10,7 @@
 class EepromString
 {
 public:
-	EepromString(uint16_t startAddress, uint8_t maxLength);
+	EepromString(uint16_t startAddress, uint16_t maxLength);
 	bool isDefault();
 	void write(const String &str);
 	String read();
@@ -18,7 +18,7 @@ public:
 
 private:
 	uint16_t _startAddress;
-	uint8_t _maxLength;
+	uint16_t _maxLength;
 };
 
 #endif // EEPROM_STRING_H

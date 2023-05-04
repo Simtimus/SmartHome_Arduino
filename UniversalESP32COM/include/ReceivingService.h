@@ -6,17 +6,6 @@
 // Project Libraries
 #include "Board.h"
 
-enum class DataContentType
-{
-	// IDK ...
-	// First of all I have to think better how
-	// I would use this class, and if I would
-	// use it for both ATmega and ESP or only
-	// for one, so each would have its optimized
-	// version
-
-};
-
 class ReceivingService
 {
 public:

@@ -66,3 +66,5 @@ String Board::getDescription() const
 
 void Board::setDescription(const String &newDescription)
 { Description = newDescription; }
+
+String Board::DefaultGuid = "00000000-0000-0000-0000-000000000000";

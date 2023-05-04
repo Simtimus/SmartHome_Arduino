@@ -1,12 +1,12 @@
 #include "SendingService.h"
 
-SendingService::SendingService(UdpCommunication &UdpComm, EepromString &Eeprom, ComponentManager &CompManager, ClientData &Client, Board &Board):
-	udpComm(UdpComm), eeprom(Eeprom), compManager(CompManager), client(Client), board(Board) {};
+SendingService::SendingService(UdpCommunication &UdpComm, ComponentManager &CompManager, ClientData &Client, Board &Board):
+	udpComm(UdpComm), compManager(CompManager), client(Client), board(Board) {};
 
 void SendingService::runService()
 {
 	// Checking for an valid BoardId
-	if (board.getId() == DefaultGuid)
+	if (board.getId() == Board::DefaultGuid)
 	{
 		transmitBoardInfo();
 	}

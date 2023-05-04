@@ -6,8 +6,6 @@
 // Project Libraries
 #include "Component.h"
 
-// Default Guid
-String DefaultGuid = "00000000-0000-0000-0000-000000000000";
 
 class Board
 {
@@ -34,6 +32,9 @@ public:
 	
 	String getDescription() const;
 	void setDescription(const String &newDescription);
+
+	// Default Guid
+	static String DefaultGuid;
 
 private:
 	String Id;

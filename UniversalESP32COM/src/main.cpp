@@ -20,7 +20,7 @@
 const char *ssid = "Simtimus Network";
 const char *password = "ureshiumaewo";
 
-const char *host = "192.168.25.215";
+const char *host = "192.168.142.239";
 const uint16_t port = 8080;
 const uint16_t localPort = 4210;
 
@@ -29,10 +29,10 @@ WiFiUDP Udp;
 WiFiMulti wifiMulti;
 UdpCommunication UdpComm = UdpCommunication(Udp, host, port);
 ComponentManager CompManager = ComponentManager();
-EepromString Eeprom = EepromString(0, 36);
+EepromString Eeprom = EepromString(0, 37);
 
 // Board announcement
-String boardId = Eeprom.readGuid(); // max 36 characters
+String boardId = Eeprom.readGuid(); // max 37 characters
 String boardName = "First Board"; // max 32 characters
 String boardModel = "ESP32";      // max 32 characters
 String boardDescription = "Room Light Manager"; // max 32 characters
@@ -42,7 +42,7 @@ Board thisBoard = Board(boardId, boardName, boardModel, boardDescription);
 ClientData Client = ClientData(boardId);
 
 // Services announcement
-SendingService Sending = SendingService(UdpComm, Eeprom, CompManager, Client, thisBoard);
+SendingService Sending = SendingService(UdpComm, CompManager, Client, thisBoard);
 // ReceivingService Receiving = ReceivingService(Eeprom, thisBoard);
 
 // Variables announcement
@@ -86,4 +86,5 @@ void loop()
 {
   Sending.runService();
   // Receiving.runService();
+  delay(500);
 }
