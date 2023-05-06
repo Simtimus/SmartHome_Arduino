@@ -12,7 +12,7 @@
 #include "SendingService.h"
 #include "ReceivingService.h"
 #include "EepromString.h"
-#include "ClientData.h"
+#include "ArduinoDataPacket.h"
 // Data Models
 #include "Board.h"
 
@@ -39,10 +39,10 @@ String boardDescription = "Room Light Manager"; // max 32 characters
 Board thisBoard = Board(boardId, boardName, boardModel, boardDescription);
 
 // ClientData announcement
-ClientData Client = ClientData(boardId);
+ArduinoDataPacket DataPacket = ArduinoDataPacket(boardId);
 
 // Services announcement
-SendingService Sending = SendingService(UdpComm, CompManager, Client, thisBoard);
+SendingService Sending = SendingService(UdpComm, CompManager, DataPacket, thisBoard);
 // ReceivingService Receiving = ReceivingService(Eeprom, thisBoard);
 
 // Variables announcement

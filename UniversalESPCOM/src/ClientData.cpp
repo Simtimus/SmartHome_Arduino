@@ -1,27 +1,27 @@
 #include "ClientData.h"
 
-ClientData::ClientData() {}
+ArduinoDataPacket::ArduinoDataPacket() {}
 
-ClientData::ClientData(String &boardId) : BoardId(boardId) {}
+ArduinoDataPacket::ArduinoDataPacket(String &boardId) : BoardId(boardId) {}
 
-ClientData::ClientData(String &boardId, int &componentId) : BoardId(boardId), ComponentId(componentId) {}
+ArduinoDataPacket::ArduinoDataPacket(String &boardId, int &componentId) : BoardId(boardId), ComponentId(componentId) {}
 
-ClientData::ClientData(String &boardId, int &componentId, int &pinId) : BoardId(boardId), ComponentId(componentId), PinId(pinId) {}
+ArduinoDataPacket::ArduinoDataPacket(String &boardId, int &componentId, int &pinId) : BoardId(boardId), ComponentId(componentId), PinId(pinId) {}
 
-void ClientData::setData(const String &newData)
+void ArduinoDataPacket::setData(const String &newData)
 {
 	Data = newData;
 	ContentType = DataContentType::StringMessage;
 }
 
-void ClientData::setData(const String &newData, const DataContentType &contentType, const String &newBoardId)
+void ArduinoDataPacket::setData(const String &newData, const DataContentType &contentType, const String &newBoardId)
 {
 	Data = newData;
 	ContentType = contentType;
 	BoardId = newBoardId;
 }
 
-void ClientData::setData(const String &newData, const String &newBoardId, const int &newComponentId)
+void ArduinoDataPacket::setData(const String &newData, const String &newBoardId, const int &newComponentId)
 {
 	Data = newData;
 	BoardId = newBoardId;
@@ -29,7 +29,7 @@ void ClientData::setData(const String &newData, const String &newBoardId, const 
 	ContentType = DataContentType::SingleComponent;
 }
 
-void ClientData::setData(const String &newData, const String &newBoardId, const int &newComponentId, const int &newPinId)
+void ArduinoDataPacket::setData(const String &newData, const String &newBoardId, const int &newComponentId, const int &newPinId)
 {
 	Data = newData;
 	BoardId = newBoardId;
@@ -38,27 +38,27 @@ void ClientData::setData(const String &newData, const String &newBoardId, const 
 	ContentType = DataContentType::SinglePortPin;
 }
 
-void ClientData::setContentType(const DataContentType &newContentType)
+void ArduinoDataPacket::setContentType(const DataContentType &newContentType)
 {
 	ContentType = newContentType;
 }
 
-void ClientData::setBoardId(const String &newBoardId)
+void ArduinoDataPacket::setBoardId(const String &newBoardId)
 {
 	BoardId = newBoardId;
 }
 
-void ClientData::setComponentId(const int &newComponentId)
+void ArduinoDataPacket::setComponentId(const int &newComponentId)
 {
 	ComponentId = newComponentId;
 }
 
-void ClientData::setPinId(const int &newPinId)
+void ArduinoDataPacket::setPinId(const int &newPinId)
 {
 	PinId = newPinId;
 }
 
-void ClientData::setToDefault()
+void ArduinoDataPacket::setToDefault()
 {
 	Data = "";
 	ContentType = DataContentType::StringMessage;
@@ -66,17 +66,17 @@ void ClientData::setToDefault()
 	int PinId = -1;
 }
 
-String ClientData::getData() const
+String ArduinoDataPacket::getData() const
 { return Data; }
 
-DataContentType ClientData::getContentType() const
+DataContentType ArduinoDataPacket::getContentType() const
 { return ContentType; }
 
-String ClientData::getBoardId() const
+String ArduinoDataPacket::getBoardId() const
 { return BoardId; }
 
-int ClientData::getComponentId() const
+int ArduinoDataPacket::getComponentId() const
 { return ComponentId; }
 
-int ClientData::getPinId() const
+int ArduinoDataPacket::getPinId() const
 { return PinId; }

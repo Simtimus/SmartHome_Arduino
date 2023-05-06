@@ -1,5 +1,5 @@
-#ifndef CLIENT_DATA_H
-#define CLIENT_DATA_H
+#ifndef ARDUINO_DATA_PACKET
+#define ARDUINO_DATA_PACKET
 
 // Arduino Libraries
 #include <Arduino.h>
@@ -15,13 +15,13 @@ enum class DataContentType
 	SinglePortPin,
 };
 
-class ClientData
+class ArduinoDataPacket
 {
 public:
-	ClientData();
-	ClientData(String &boardId);
-	ClientData(String &boardId, int &componentId);
-	ClientData(String &boardId, int &componentId, int &pinId);
+	ArduinoDataPacket();
+	ArduinoDataPacket(String &boardId);
+	ArduinoDataPacket(String &boardId, int &componentId);
+	ArduinoDataPacket(String &boardId, int &componentId, int &pinId);
 
 	void setData(const String &newData);
 
@@ -55,4 +55,4 @@ private:
 	int PinId = -1;
 };
 
-#endif // CLIENT_DATA_H
+#endif // ARDUINO_DATA_PACKET

@@ -5,7 +5,7 @@
 #include <Arduino.h>
 // Project Libraries
 #include "UdpCommunication.h"
-#include "ClientData.h"
+#include "ArduinoDataPacket.h"
 #include "ComponentManager.h"
 #include "Board.h"
 #include "Component.h"
@@ -15,7 +15,7 @@
 class SendingService
 {
 public:
-	SendingService(UdpCommunication &UdpComm, ComponentManager &CompManager, ClientData &Client, Board &Board);
+	SendingService(UdpCommunication &UdpComm, ComponentManager &CompManager, ArduinoDataPacket &DataPacket, Board &Board);
 
 	void runService();
 
@@ -32,7 +32,7 @@ private:
 	bool wakedUp = true;
 	UdpCommunication udpComm;
 	ComponentManager compManager;
-	ClientData client;
+	ArduinoDataPacket dataPacket;
 	Board board;
 };
 

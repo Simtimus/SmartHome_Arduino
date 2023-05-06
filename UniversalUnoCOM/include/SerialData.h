@@ -15,13 +15,13 @@ enum class DataContentType
 
 };
 
-class ClientData
+class ArduinoDataPacket
 {
 public:
-	ClientData();
-	ClientData(String &boardId);
-	ClientData(String &boardId, int &componentId);
-	ClientData(String &boardId, int &componentId, int &pinId);
+	ArduinoDataPacket();
+	ArduinoDataPacket(String &boardId);
+	ArduinoDataPacket(String &boardId, int &componentId);
+	ArduinoDataPacket(String &boardId, int &componentId, int &pinId);
 
 	void setData(const String &newData);
 

@@ -1,4 +1,4 @@
-#include "ClientData.h"
+#include "ArduinoDataPacket.h"
 
 ArduinoDataPacket::ArduinoDataPacket() {}
 
@@ -65,3 +65,18 @@ void ArduinoDataPacket::setToDefault()
 	int ComponentId = -1;
 	int PinId = -1;
 }
+
+String ArduinoDataPacket::getData() const
+{ return Data; }
+
+DataContentType ArduinoDataPacket::getContentType() const
+{ return ContentType; }
+
+String ArduinoDataPacket::getBoardId() const
+{ return BoardId; }
+
+int ArduinoDataPacket::getComponentId() const
+{ return ComponentId; }
+
+int ArduinoDataPacket::getPinId() const
+{ return PinId; }

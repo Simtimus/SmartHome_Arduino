@@ -1,7 +1,7 @@
 #include "SendingService.h"
 
-SendingService::SendingService(UdpCommunication &UdpComm, ComponentManager &CompManager, ClientData &Client, Board &Board):
-	udpComm(UdpComm), compManager(CompManager), client(Client), board(Board) {};
+SendingService::SendingService(UdpCommunication &UdpComm, ComponentManager &CompManager, ArduinoDataPacket &DataPacket, Board &Board):
+	udpComm(UdpComm), compManager(CompManager), dataPacket(DataPacket), board(Board){};
 
 void SendingService::runService()
 {
@@ -14,7 +14,7 @@ void SendingService::runService()
 	{
 		if (wakedUp)
 		{
-			client.setBoardId(board.getId());
+			dataPacket.setBoardId(board.getId());
 			board.setComponents(compManager.getComponents());
 			transmitFullDevice();
 			wakedUp = false;
@@ -32,20 +32,20 @@ void SendingService::runService()
 void SendingService::transmitBoardInfo()
 {
 	String serializedBoard = JsonConverter::boardToJson(board);
-	client.setData(serializedBoard);
-	client.setContentType(DataContentType::BoardInfo);
+	dataPacket.setData(serializedBoard);
+	dataPacket.setContentType(DataContentType::BoardInfo);
 	String serializedClient = JsonConverter::clientDataToJson(client);
 	udpComm.SendMsg(serializedClient);
-	client.setToDefault();
+	dataPacket.setToDefault();
 }
 
 void SendingService::transmitFullDevice()
 {
 	String serializedBoard = JsonConverter::boardToJson(board);
-	client.setData(serializedBoard, DataContentType::EntireBoard, board.getId());
+	dataPacket.setData(serializedBoard, DataContentType::EntireBoard, board.getId());
 	String serializedClient = JsonConverter::clientDataToJson(client);
 	udpComm.SendMsg(serializedClient);
-	client.setToDefault();
+	dataPacket.setToDefault();
 }
 
 void SendingService::transmitSingleComponent(int &componentIndex, bool (&changedPortPins)[MAX_ITEMS])
@@ -62,10 +62,10 @@ void SendingService::transmitSingleComponent(int &componentIndex, bool (&changed
 	}
 
 	String serializedPortPin = JsonConverter::componentToJson(newComponent);
-	client.setData(serializedPortPin, board.getId(), componentIndex);
+	dataPacket.setData(serializedPortPin, board.getId(), componentIndex);
 	String serializedClient = JsonConverter::clientDataToJson(client);
 	udpComm.SendMsg(serializedClient);
-	client.setToDefault();
+	dataPacket.setToDefault();
 }
 
 void SendingService::transmitSinglePortPin(int &componentIndex, bool (&changedPortPins)[MAX_ITEMS])
@@ -80,10 +80,10 @@ void SendingService::transmitSinglePortPin(int &componentIndex, bool (&changedPo
 		}
 	}
 	String serializedPortPin = JsonConverter::portPinToJson(board.getComponentAtIndex(componentIndex).getConnectedPinAtIndex(portPinIndex));
-	client.setData(serializedPortPin, board.getId(), componentIndex, portPinIndex);
+	dataPacket.setData(serializedPortPin, board.getId(), componentIndex, portPinIndex);
 	String serializedClient = JsonConverter::clientDataToJson(client);
 	udpComm.SendMsg(serializedClient);
-	client.setToDefault();
+	dataPacket.setToDefault();
 }
 
 void SendingService::updateChangedPinValues(bool (&changedPortPins)[MAX_ITEMS][MAX_ITEMS], int (&changedPortPinsCount)[MAX_ITEMS])

@@ -86,7 +86,7 @@ String JsonConverter::boardToJson(const Board &board)
 	return json;
 }
 
-String JsonConverter::clientDataToJson(const ClientData &clientData)
+String JsonConverter::clientDataToJson(const ArduinoDataPacket &clientData)
 {
 	size_t clientDataDocSize = GetClientDataDocummentSize(clientData);
 	DynamicJsonDocument doc(clientDataDocSize);
@@ -185,12 +185,12 @@ PortPin JsonConverter::jsonToPortPin(const String &json)
 	return pin;
 }
 
-ClientData JsonConverter::jsonToClientData(const String &json)
+ArduinoDataPacket JsonConverter::jsonToClientData(const String &json)
 {
 	DynamicJsonDocument doc(json.length() + 128);
 	deserializeJson(doc, json);
 
-	ClientData clientData;
+	ArduinoDataPacket clientData;
 	clientData.setData(doc["Data"].as<String>());
 	clientData.setContentType(static_cast<DataContentType>(doc["ContentType"].as<int>()));
 	clientData.setBoardId(doc["BoardId"].as<String>());
@@ -242,7 +242,7 @@ size_t JsonConverter::GetBoardDocummentSize(const Board &board)
 	return baseSize + componentSize;
 }
 
-size_t JsonConverter::GetClientDataDocummentSize(const ClientData &clientData)
+size_t JsonConverter::GetClientDataDocummentSize(const ArduinoDataPacket &clientData)
 {
 	size_t baseSize = 150;
 	baseSize += clientData.getData().length();
