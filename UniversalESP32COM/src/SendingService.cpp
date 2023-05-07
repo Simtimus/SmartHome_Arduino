@@ -16,6 +16,7 @@ void SendingService::runService()
 		{
 			dataPacket.setBoardId(board.getId());
 			board.setComponents(compManager.getComponents());
+			board.setComponentsCount(compManager.getComponentsCount());
 			transmitFullDevice();
 			wakedUp = false;
 		}
@@ -34,7 +35,7 @@ void SendingService::transmitBoardInfo()
 	String serializedBoard = JsonConverter::boardToJson(board);
 	dataPacket.setData(serializedBoard);
 	dataPacket.setContentType(DataContentType::BoardInfo);
-	String serializedClient = JsonConverter::clientDataToJson(client);
+	String serializedClient = JsonConverter::clientDataToJson(dataPacket);
 	udpComm.SendMsg(serializedClient);
 	dataPacket.setToDefault();
 }
@@ -43,7 +44,7 @@ void SendingService::transmitFullDevice()
 {
 	String serializedBoard = JsonConverter::boardToJson(board);
 	dataPacket.setData(serializedBoard, DataContentType::EntireBoard, board.getId());
-	String serializedClient = JsonConverter::clientDataToJson(client);
+	String serializedClient = JsonConverter::clientDataToJson(dataPacket);
 	udpComm.SendMsg(serializedClient);
 	dataPacket.setToDefault();
 }
@@ -63,7 +64,7 @@ void SendingService::transmitSingleComponent(int &componentIndex, bool (&changed
 
 	String serializedPortPin = JsonConverter::componentToJson(newComponent);
 	dataPacket.setData(serializedPortPin, board.getId(), componentIndex);
-	String serializedClient = JsonConverter::clientDataToJson(client);
+	String serializedClient = JsonConverter::clientDataToJson(dataPacket);
 	udpComm.SendMsg(serializedClient);
 	dataPacket.setToDefault();
 }
@@ -81,7 +82,7 @@ void SendingService::transmitSinglePortPin(int &componentIndex, bool (&changedPo
 	}
 	String serializedPortPin = JsonConverter::portPinToJson(board.getComponentAtIndex(componentIndex).getConnectedPinAtIndex(portPinIndex));
 	dataPacket.setData(serializedPortPin, board.getId(), componentIndex, portPinIndex);
-	String serializedClient = JsonConverter::clientDataToJson(client);
+	String serializedClient = JsonConverter::clientDataToJson(dataPacket);
 	udpComm.SendMsg(serializedClient);
 	dataPacket.setToDefault();
 }

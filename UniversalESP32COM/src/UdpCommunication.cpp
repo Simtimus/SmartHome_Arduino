@@ -12,7 +12,7 @@ int UdpCommunication::SendMsg(String msg)
 	return packetSize;
 }
 
-String UdpCommunication::ReciveMsg()
+String UdpCommunication::ReceiveMsg()
 {
 	int packetSize = _udp.parsePacket();
 	String msg = "";

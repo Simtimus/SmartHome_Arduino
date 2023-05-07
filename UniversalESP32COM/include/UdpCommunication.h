@@ -16,7 +16,7 @@ class UdpCommunication
 		UdpCommunication(WiFiUDP &udp, const char *host, uint16_t port);
 
 		int SendMsg(String msg);
-		String ReciveMsg();
+		String ReceiveMsg();
 
 	private:
 		WiFiUDP &_udp;

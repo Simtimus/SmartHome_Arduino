@@ -199,6 +199,28 @@ ArduinoDataPacket JsonConverter::jsonToClientData(const String &json)
 	return clientData;
 }
 
+ReceivedDataPacket JsonConverter::jsonToReceivedDataPacket(const String &json)
+{
+	DynamicJsonDocument doc(json.length() + 128);
+	deserializeJson(doc, json);
+
+	ReceivedDataPacket receivedData = ReceivedDataPacket();
+
+	JsonArray commandsArray = doc["ConnectedPins"];
+	for (JsonObject commandObject : commandsArray)
+	{
+		ReceivedCommand command(
+			commandObject["Value"].as<String>(),
+			static_cast<CommandAction>(commandObject["Action"].as<int>()),
+			commandObject["ComponentId"].as<int>(),
+			commandObject["PinId"].as<int>());
+
+		receivedData.addCommand(command);
+	}
+
+	return receivedData;
+}
+
 // -------------------------------------------------------
 // Optimized Documment Size
 

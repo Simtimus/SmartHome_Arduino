@@ -4,38 +4,30 @@
 // Arduino Libraries
 #include <Arduino.h>
 // Project Libraries
+#include "JsonConverter.h"
+#include "UdpCommunication.h"
+#include "EepromString.h"
+#include "ReceivedDataPacket.h"
 #include "Board.h"
+#include "Component.h"
+
 
 class ReceivingService
 {
 public:
-	ReceivingService();
-	ReceivingService(String &boardId);
-	ReceivingService(String &boardId, int &componentId);
-	ReceivingService(String &boardId, int &componentId, int &pinId);
+	ReceivingService(UdpCommunication &UdpComm, EepromString &Eeprom, Board &newBoard);
 
-	void setData(const String &newData);
+	void runService();
 
-	void setData(const String &newData, const DataContentType &contentType, const String &newBoardId);
+	void processCommands(ReceivedDataPacket &dataPacket);
 
-	void setData(const String &newData, const String &newBoardId, const int &newComponentId);
-
-	void setData(const String &newData, const String &newBoardId, const int &newComponentId, const int &newPinId);
-
-	void setContentType(const DataContentType &newContentType);
-
-	void setBoardId(const String &newBoardId);
-
-	void setComponentId(const int &newComponentId);
-
-	void setPinId(const int &newPinId);
-
-	void setToDefault();
+	void updateBoardPinsState();
 
 private:
-	DataContentType ContentType;
-	int ComponentId = -1;
-	int PinId = -1;
+	UdpCommunication udpComm;
+	EepromString eeprom;
+	Board board;
+	bool wakedUp;
 };
 
 #endif // RECEIVING_SERVICE_H

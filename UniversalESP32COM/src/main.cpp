@@ -43,7 +43,7 @@ ArduinoDataPacket DataPacket = ArduinoDataPacket(boardId);
 
 // Services announcement
 SendingService Sending = SendingService(UdpComm, CompManager, DataPacket, thisBoard);
-// ReceivingService Receiving = ReceivingService(Eeprom, thisBoard);
+ReceivingService Receiving = ReceivingService(UdpComm, Eeprom, thisBoard);
 
 // Variables announcement
 unsigned long ReadPinData = millis();
@@ -85,6 +85,6 @@ void setup()
 void loop()
 {
   Sending.runService();
-  // Receiving.runService();
+  Receiving.runService();
   delay(500);
 }

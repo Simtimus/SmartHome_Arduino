@@ -24,6 +24,7 @@ public:
 	void setComponents(Component (&newComponents)[MAX_ITEMS]);
 	Component (&getComponents())[MAX_ITEMS];
 
+	void setComponentsCount(int newCount);
 	int getComponentCount() const;
 	bool addComponent(const Component &component);
 	
