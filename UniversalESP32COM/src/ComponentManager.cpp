@@ -13,16 +13,19 @@ void ComponentManager::Initialize()
 			if (PortPinsId[component][portPin] == 0)
 				break;
 
-			newComponent.addConnectedPin(PortPin(PortPinsId[component][portPin],
-				ComponentManager::PortPinsValue[component][portPin],
-				ComponentManager::PortPinsMode[component][portPin],
-				ComponentManager::PortPinsValueType[component][portPin]));
+			PortPin newPortPin(PortPinsId[component][portPin],
+					ComponentManager::PortPinsValue[component][portPin],
+					ComponentManager::PortPinsMode[component][portPin],
+					ComponentManager::PortPinsValueType[component][portPin],
+					component);
+
+			newComponent.addConnectedPin(newPortPin);
+
 			if (PortPinsMode[component][portPin] == PinMode::Read)
 				pinMode(PortPinsId[component][portPin], INPUT);
 			if (PortPinsMode[component][portPin] == PinMode::Write)
 				pinMode(PortPinsId[component][portPin], OUTPUT);
 		}
-
 		if (newComponent.getConnectedPinCount() != 0)
 			addComponent(newComponent);
 	}
@@ -31,9 +34,9 @@ void ComponentManager::Initialize()
 // ------------------------------------------------------
 // Arduino Pins and Components configuration
 
-ComponentsId ComponentManager::ComponentsIds[MAX_ITEMS] = {
-	ComponentsId::LightSensor, //	Component 0
-	ComponentsId::Relay,	   //	Component 1
+ComponentTypes ComponentManager::ComponentsIds[MAX_ITEMS] = {
+	ComponentTypes::LightSensor, //	Component 0
+	ComponentTypes::Relay,	   //	Component 1
 };
 
 String ComponentManager::ComponentsDescription[MAX_ITEMS] = {

@@ -6,7 +6,7 @@
 String JsonConverter::portPinToJson(const PortPin &portPin)
 {
 	size_t portPinDocSize = GetPortPinDocummentSize(portPin);
-	DynamicJsonDocument doc(portPinDocSize);
+	DynamicJsonDocument doc(portPinDocSize * 1.5);
 
 	doc["Id"] = portPin.getId();
 	doc["Mode"] = static_cast<int>(portPin.getMode());
@@ -22,10 +22,10 @@ String JsonConverter::portPinToJson(const PortPin &portPin)
 String JsonConverter::componentToJson(const Component &component)
 {
 	size_t componentDocSize = GetComponentDocummentSize(component);
-	DynamicJsonDocument doc(componentDocSize);
+	DynamicJsonDocument doc(componentDocSize * 1.5);
 
 	doc["Id"] = component.getId();
-	doc["ComponentId"] = static_cast<int>(component.getComponentId());
+	doc["ComponentId"] = static_cast<int>(component.getComponentType());
 	doc["Description"] = component.getDescription();
 
 	JsonArray connectedPinsArray = doc.createNestedArray("ConnectedPins");
@@ -49,7 +49,7 @@ String JsonConverter::componentToJson(const Component &component)
 String JsonConverter::boardToJson(const Board &board)
 {
 	size_t boardDocSize = GetBoardDocummentSize(board);
-	DynamicJsonDocument doc(boardDocSize);
+	DynamicJsonDocument doc(boardDocSize * 1.5);
 
 	doc["Id"] = board.getId();
 	doc["Name"] = board.getName();
@@ -63,7 +63,7 @@ String JsonConverter::boardToJson(const Board &board)
 		const Component &component = board.getComponentAtIndex(i);
 
 		componentObj["Id"] = component.getId();
-		componentObj["ComponentId"] = static_cast<int>(component.getComponentId());
+		componentObj["ComponentType"] = static_cast<int>(component.getComponentType());
 		componentObj["Description"] = component.getDescription();
 
 		JsonArray connectedPinsArray = componentObj.createNestedArray("ConnectedPins");
@@ -88,7 +88,7 @@ String JsonConverter::boardToJson(const Board &board)
 String JsonConverter::clientDataToJson(const ArduinoDataPacket &dataPacket)
 {
 	size_t clientDataDocSize = GetClientDataDocummentSize(dataPacket);
-	DynamicJsonDocument doc(clientDataDocSize);
+	DynamicJsonDocument doc(clientDataDocSize * 1.5);
 
 	doc["Data"] = dataPacket.getData();
 	doc["ContentType"] = static_cast<int>(dataPacket.getContentType());
@@ -121,7 +121,7 @@ Board JsonConverter::jsonToBoard(const String &json)
 	{
 		Component component(
 			componentObj["Id"].as<int>(),
-			static_cast<ComponentsId>(componentObj["ComponentId"].as<int>()),
+			static_cast<ComponentTypes>(componentObj["ComponentId"].as<int>()),
 			componentObj["Description"].as<String>());
 
 		JsonArray connectedPinsArray = componentObj["ConnectedPins"];
@@ -150,7 +150,7 @@ Component JsonConverter::jsonToComponent(const String &json)
 
 	Component component(
 		doc["Id"].as<int>(),
-		static_cast<ComponentsId>(doc["ComponentId"].as<int>()),
+		static_cast<ComponentTypes>(doc["ComponentId"].as<int>()),
 		doc["Description"].as<String>());
 
 	JsonArray connectedPinsArray = doc["ConnectedPins"];
@@ -234,22 +234,21 @@ size_t JsonConverter::GetPortPinDocummentSize(const PortPin &portPin)
 size_t JsonConverter::GetComponentDocummentSize(const Component &component)
 {
 	size_t baseSize = 64;
-	size_t portPinSize = 0;
+	size_t portPinsSize = 0;
 	baseSize += component.getDescription().length();
 
 	for (int i = 0; i < component.getConnectedPinCount(); i++)
 	{
 		const PortPin &pin = component.getConnectedPinAtIndex(i);
-		portPinSize += GetPortPinDocummentSize(pin);
+		portPinsSize += GetPortPinDocummentSize(pin);
 	}
-
-	return baseSize + portPinSize;
+	return baseSize + portPinsSize;
 }
 
 size_t JsonConverter::GetBoardDocummentSize(const Board &board)
 {
 	size_t baseSize = 100;
-	size_t componentSize = 0;
+	size_t componentsSize = 0;
 	baseSize += board.getName().length();
 	baseSize += board.getModel().length();
 	baseSize += board.getDescription().length();
@@ -257,10 +256,9 @@ size_t JsonConverter::GetBoardDocummentSize(const Board &board)
 	for (int i = 0; i < board.getComponentCount(); i++)
 	{
 		const Component &component = board.getComponentAtIndex(i);
-		componentSize += GetComponentDocummentSize(component);
+		componentsSize += GetComponentDocummentSize(component);
 	}
-
-	return baseSize + componentSize;
+	return baseSize + componentsSize;
 }
 
 size_t JsonConverter::GetClientDataDocummentSize(const ArduinoDataPacket &dataPacket)
@@ -268,6 +266,5 @@ size_t JsonConverter::GetClientDataDocummentSize(const ArduinoDataPacket &dataPa
 	size_t baseSize = 150;
 	baseSize += dataPacket.getData().length();
 	baseSize += dataPacket.getBoardId().length();
-
 	return baseSize;
 }

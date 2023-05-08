@@ -20,6 +20,17 @@ String Board::getName() const
 void Board::setName(const String &newName)
 { Name = newName; }
 
+Component &Board::getComponentAtIndex(int index)
+{
+	if (index >= 0 && index < ComponentCount)
+	{
+		return Components[index];
+	}
+	// You should handle the case when the index is out of bounds.
+	// For this example, we will return the first element.
+	return Components[0];
+}
+
 const Component &Board::getComponentAtIndex(int index) const
 {
 	if (index >= 0 && index < ComponentCount)

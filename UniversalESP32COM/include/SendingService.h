@@ -24,6 +24,8 @@ public:
 	void transmitSingleComponent(int &componentIndex, bool (&changedPortPins)[MAX_ITEMS]);
 	void transmitSinglePortPin(int &componentIndex, bool (&changedPortPins)[MAX_ITEMS]);
 
+	void updateChangedPinValues();
+
 	void updateChangedPinValues(bool (&changedPortPins)[MAX_ITEMS][MAX_ITEMS], int (&changedPortPinsCount)[MAX_ITEMS]);
 
 	void selectTransmissionMode(bool (&changedPortPins)[MAX_ITEMS][MAX_ITEMS], int (&changedPortPinsCount)[MAX_ITEMS]);

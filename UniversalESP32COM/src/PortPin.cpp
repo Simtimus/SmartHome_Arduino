@@ -6,14 +6,14 @@ PortPin::PortPin() : Id(0), Mode(PinMode::Read), ValueType(ObjectValueType::Inte
 PortPin::PortPin(int Id, PinMode PinMode, ObjectValueType ValueType):
 	Id(Id), Value(""), Mode(PinMode), ValueType(ValueType) {}
 
-PortPin::PortPin(int Id, String InitialValue, PinMode PinMode, ObjectValueType ValueType):
-	Id(Id), Value(InitialValue), Mode(PinMode), ValueType(ValueType) {}
+PortPin::PortPin(int &Id, String &InitialValue, PinMode &PinMode, ObjectValueType &ValueType, int ParentId):
+	Id(Id), Value(InitialValue), Mode(PinMode), ValueType(ValueType), ParentComponentId(ParentId) {}
 
 // Getters and setters
 int PortPin::getId() const
 { return Id; }
 
-void PortPin::setId(int newId)
+void PortPin::setId(int &newId)
 { Id = newId; }
 
 PinMode PortPin::getMode() const

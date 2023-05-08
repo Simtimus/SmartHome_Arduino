@@ -9,9 +9,6 @@ void ReceivingService::runService()
 {
 	String data = udpComm.ReceiveMsg();
 
-	Serial.print("Receiving part: ");
-	Serial.println(board.getConnectionState());
-
 	if (data != "")
 	{
 		ReceivedDataPacket receivedDataPacket = JsonConverter::jsonToReceivedDataPacket(data);
@@ -21,7 +18,6 @@ void ReceivingService::runService()
 
 	if (wakedUp)
 	{
-		Serial.println("First update of pins states");
 		updateBoardPinsState();
 		wakedUp = false;
 	}
@@ -29,7 +25,7 @@ void ReceivingService::runService()
 
 void ReceivingService::processCommands(ReceivedDataPacket &dataPacket)
 {
-	Serial.print("Received : ");
+	Serial.print("[RECEIVING] Incomming: ");
 	Serial.print(dataPacket.getCommandsCount());
 	Serial.println(" commands;");
 
@@ -51,7 +47,7 @@ void ReceivingService::processCommands(ReceivedDataPacket &dataPacket)
 			int componentId = command.getComponentId();
 			int pinId = command.getPinId();
 
-			if (componentId != -1 and pinId != -1)
+			if (componentId != -1 && pinId != -1)
 			{
 				Component component = board.getComponentAtIndex(componentId);
 				PortPin portPin = component.getConnectedPinAtIndex(pinId);
@@ -87,4 +83,5 @@ void ReceivingService::updateBoardPinsState()
 			}
 		}
 	}
+	Serial.println("<Arduino> Updated pins states");
 }

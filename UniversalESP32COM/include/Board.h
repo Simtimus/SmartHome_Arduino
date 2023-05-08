@@ -19,6 +19,10 @@ public:
 	String getName() const;
 	void setName(const String &newName);
 
+	// Non-const version
+	Component &getComponentAtIndex(int index);
+
+	// Const version
 	const Component &getComponentAtIndex(int index) const;
 
 	void setComponents(Component (&newComponents)[MAX_ITEMS]);

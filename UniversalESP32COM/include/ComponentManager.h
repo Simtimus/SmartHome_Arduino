@@ -15,7 +15,7 @@ public:
 
 	void Initialize();
 
-	static ComponentsId ComponentsIds[MAX_ITEMS];
+	static ComponentTypes ComponentsIds[MAX_ITEMS];
 	static String ComponentsDescription[MAX_ITEMS];
 
 	static int PortPinsId[MAX_ITEMS][MAX_ITEMS];

@@ -29,11 +29,11 @@ public:
 
 	PortPin(int Id, PinMode PinMode, ObjectValueType ValueType);
 
-	PortPin(int Id, String InitialValue, PinMode PinMode, ObjectValueType ValueType);
+	PortPin(int &Id, String &InitialValue, PinMode &PinMode, ObjectValueType &ValueType, int ParentId);
 
 	// Getters and setters
 	int getId() const;
-	void setId(int newId);
+	void setId(int &newId);
 
 	PinMode getMode() const;
 	void setMode(PinMode &newMode);

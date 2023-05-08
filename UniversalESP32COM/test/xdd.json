@@ -1,0 +1,43 @@
+{
+	"Id": "a3685765-037d-44f7-8b72-5853ab54218f",
+	"Name": "First Board",
+	"Model": "ESP32",
+	"Description": "Room Light Manager",
+	"Components": [
+		{
+			"Id": 0,
+			"ComponentType": 1,
+			"Description": "Located in living room",
+			"ConnectedPins": [
+				{
+					"Id": 3,
+					"Mode": 0,
+					"Value": "0",
+					"ValueType": 1,
+					"ParentComponentId": 0
+				}
+			]
+		},
+		{
+			"Id": 1,
+			"ComponentType": 2,
+			"Description": "Controls lamp",
+			"ConnectedPins": [
+				{
+					"Id": 4,
+					"Mode": 1,
+					"Value": "0",
+					"ValueType": 3,
+					"ParentComponentId": 1
+				},
+				{
+					"Id": 5,
+					"Mode": 0,
+					"Value": "0",
+					"ValueType": 3,
+					"ParentComponentId": 1
+				}
+			]
+		}
+	]
+}

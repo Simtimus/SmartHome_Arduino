@@ -1,27 +1,36 @@
 #include "Component.h"
 
 // Constructor
-Component::Component() : Id(0), ComponentId(ComponentsId::Unknown), Description(""), ConnectedPinCount(0) {}
+Component::Component() : Id(0), ComponentId(ComponentTypes::Unknown), Description(""), ConnectedPinCount(0) {}
 
-Component::Component(int Id, ComponentsId ComponentId, String Description) : Id(Id), ComponentId(ComponentId), Description(Description), ConnectedPinCount(0) {}
+Component::Component(int Id, ComponentTypes ComponentId, String Description) : Id(Id), ComponentId(ComponentId), Description(Description), ConnectedPinCount(0) {}
 
 // Getters and setters
 int Component::getId() const { return Id; }
 
 void Component::setId(const int &newId) { Id = newId; }
 
-ComponentsId Component::getComponentId() const { return ComponentId; }
+ComponentTypes Component::getComponentType() const { return ComponentId; }
 
-void Component::setComponentId(const ComponentsId &newComponentId) { ComponentId = newComponentId; }
+void Component::setComponentType(const ComponentTypes &newComponentId) { ComponentId = newComponentId; }
 
+// Non-const version
+PortPin &Component::getConnectedPinAtIndex(int index)
+{
+	if (index >= 0 && index < ConnectedPinCount)
+	{
+		return ConnectedPins[index];
+	}
+	return ConnectedPins[0];
+}
+
+// Const version
 const PortPin &Component::getConnectedPinAtIndex(int index) const
 {
 	if (index >= 0 && index < ConnectedPinCount)
 	{
 		return ConnectedPins[index];
 	}
-	// You should handle the case when the index is out of bounds.
-	// For this example, we will return the first element.
 	return ConnectedPins[0];
 }
 
@@ -29,7 +38,7 @@ PortPin (&Component::getConnectedPins())[MAX_ITEMS] { return ConnectedPins; }
 
 int Component::getConnectedPinCount() const { return ConnectedPinCount; }
 
-bool Component::addConnectedPin(const PortPin &pin)
+bool Component::addConnectedPin(PortPin &pin)
 {
 	if (ConnectedPinCount < MAX_ITEMS)
 	{
