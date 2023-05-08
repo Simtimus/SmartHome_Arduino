@@ -1,9 +1,17 @@
 #include "EepromString.h"
 
 EepromString::EepromString(uint16_t startAddress, uint16_t maxLength)
-	: _startAddress(startAddress), _maxLength(maxLength)
+	: _startAddress(startAddress), _maxLength(maxLength) { initialized = false; }
+
+void EepromString::begin()
 {
-	EEPROM.begin(4096); // Adjust the size to match your EEPROM size
+	EEPROM.begin(512); // Adjust the size to match your EEPROM size
+	initialized = true;
+}
+
+bool EepromString::isInitialized()
+{
+	return initialized;
 }
 
 bool EepromString::isDefault()

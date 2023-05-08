@@ -23,7 +23,7 @@ public:
 
 private:
 	ReceivedCommand Commands[MAX_COMMANDS];
-	int CommandsCount;
+	int CommandsCount = 0;
 };
 
 #endif // RECEIVED_DATA_PACKET

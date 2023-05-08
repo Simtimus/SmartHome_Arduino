@@ -25,7 +25,7 @@ public:
 
 	Component (&getComponents())[MAX_ITEMS];
 	int getComponentsCount() const;
-	bool addComponent(const Component &newComponent);
+	bool addComponent(Component &newComponent);
 
 private:
 	Component components[MAX_ITEMS];

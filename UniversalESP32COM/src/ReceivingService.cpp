@@ -1,10 +1,16 @@
 #include "ReceivingService.h"
 
-ReceivingService::ReceivingService(UdpCommunication &UdpComm, EepromString &Eeprom, Board &newBoard) : udpComm(UdpComm), eeprom(Eeprom), board(newBoard) { wakedUp = true; }
+ReceivingService::ReceivingService(UdpCommunication &UdpComm, EepromString &Eeprom, Board &newBoard) : udpComm(UdpComm), eeprom(Eeprom), board(newBoard)
+{
+	wakedUp = true;
+}
 
 void ReceivingService::runService()
 {
 	String data = udpComm.ReceiveMsg();
+
+	Serial.print("Receiving part: ");
+	Serial.println(board.getConnectionState());
 
 	if (data != "")
 	{
@@ -15,6 +21,7 @@ void ReceivingService::runService()
 
 	if (wakedUp)
 	{
+		Serial.println("First update of pins states");
 		updateBoardPinsState();
 		wakedUp = false;
 	}
@@ -22,6 +29,10 @@ void ReceivingService::runService()
 
 void ReceivingService::processCommands(ReceivedDataPacket &dataPacket)
 {
+	Serial.print("Received : ");
+	Serial.print(dataPacket.getCommandsCount());
+	Serial.println(" commands;");
+
 	for (int i = 0; i < dataPacket.getCommandsCount(); i++)
 	{
 		ReceivedCommand command = dataPacket.getCommandByIndex(i);
@@ -29,7 +40,11 @@ void ReceivingService::processCommands(ReceivedDataPacket &dataPacket)
 		{
 			String commandValue = command.getValue();
 			board.setId(commandValue);
-			eeprom.write(commandValue);
+			board.setConnectionState(true);
+			if (eeprom.isInitialized())
+			{
+				eeprom.write(commandValue);
+			}
 		}
 		else if (command.getAction() == CommandAction::SetValue)
 		{
@@ -59,11 +74,11 @@ void ReceivingService::updateBoardPinsState()
 				ObjectValueType pinValueType = portPin.getValueType();
 				if (pinValueType == ObjectValueType::Integer)
 				{
-					analogWrite(portPin.getId(), portPin.getValue().toInt());
+					digitalWrite(portPin.getId(), portPin.getValue().toInt());
 				}
 				if (pinValueType == ObjectValueType::Float)
 				{
-					analogWrite(portPin.getId(), portPin.getValue().toFloat());
+					digitalWrite(portPin.getId(), portPin.getValue().toFloat());
 				}
 				else if (pinValueType == ObjectValueType::Boolean)
 				{

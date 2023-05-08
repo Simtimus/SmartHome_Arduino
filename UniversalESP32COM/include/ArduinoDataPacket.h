@@ -46,7 +46,7 @@ public:
 	String getBoardId() const;
 	int getComponentId() const;
 	int getPinId() const;
-	
+
 private:
 	String Data;
 	DataContentType ContentType;

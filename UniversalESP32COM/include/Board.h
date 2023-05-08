@@ -34,6 +34,9 @@ public:
 	String getDescription() const;
 	void setDescription(const String &newDescription);
 
+	bool getConnectionState();
+	void setConnectionState(bool newState);
+
 	// Default Guid
 	static String DefaultGuid;
 
@@ -43,6 +46,7 @@ private:
 	Component Components[MAX_ITEMS];
 	String Model;
 	String Description;		// Max length 32 characters
+	bool isConnected;
 	int ComponentCount;
 };
 

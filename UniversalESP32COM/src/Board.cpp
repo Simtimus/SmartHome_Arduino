@@ -72,4 +72,10 @@ String Board::getDescription() const
 void Board::setDescription(const String &newDescription)
 { Description = newDescription; }
 
+bool Board::getConnectionState()
+{ return isConnected; }
+
+void Board::setConnectionState(bool newState)
+{ isConnected = newState; }
+
 String Board::DefaultGuid = "00000000-0000-0000-0000-000000000000";

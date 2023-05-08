@@ -12,6 +12,14 @@ void SendingService::runService()
 	}
 	else
 	{
+		Serial.print("Sending part: ");
+		Serial.println(board.getConnectionState());
+		if (!board.getConnectionState() and !wakedUp)
+		{
+			transmitFullDevice();
+			Serial.println("Sent full device.");
+		}
+
 		if (wakedUp)
 		{
 			dataPacket.setBoardId(board.getId());
@@ -19,6 +27,7 @@ void SendingService::runService()
 			board.setComponentsCount(compManager.getComponentsCount());
 			transmitFullDevice();
 			wakedUp = false;
+			Serial.println("Added Components to Board. Sent full device.");
 		}
 		else
 		{
@@ -43,6 +52,8 @@ void SendingService::transmitBoardInfo()
 void SendingService::transmitFullDevice()
 {
 	String serializedBoard = JsonConverter::boardToJson(board);
+	Serial.print("FULL DEVICE _____ ");
+	Serial.println(serializedBoard);
 	dataPacket.setData(serializedBoard, DataContentType::EntireBoard, board.getId());
 	String serializedClient = JsonConverter::clientDataToJson(dataPacket);
 	udpComm.SendMsg(serializedClient);
@@ -107,7 +118,7 @@ void SendingService::updateChangedPinValues(bool (&changedPortPins)[MAX_ITEMS][M
 				if (portPin.getValueType() == ObjectValueType::Boolean)
 					readedValue = String(digitalRead(portPin.getId()));
 				else
-					readedValue = String(analogRead(portPin.getId()));
+					readedValue = String(digitalRead(portPin.getId()));
 
 				if (portPin.getValue() != readedValue)
 				{

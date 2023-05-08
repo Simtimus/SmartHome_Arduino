@@ -19,10 +19,10 @@ void PortPin::setId(int newId)
 PinMode PortPin::getMode() const
 { return Mode; }
 
-void PortPin::setMode(PinMode newMode)
+void PortPin::setMode(PinMode &newMode)
 { Mode = newMode; }
 
-String PortPin::getValue() const
+const String &PortPin::getValue() const
 { return Value; }
 
 void PortPin::setValue(const String &newValue)
@@ -31,7 +31,7 @@ void PortPin::setValue(const String &newValue)
 ObjectValueType PortPin::getValueType() const
 { return ValueType; }
 
-void PortPin::setValueType(ObjectValueType newValueType)
+void PortPin::setValueType(ObjectValueType &newValueType)
 { ValueType = newValueType; }
 
 int PortPin::getParentComponentId() const

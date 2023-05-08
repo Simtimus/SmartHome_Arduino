@@ -67,16 +67,26 @@ void ArduinoDataPacket::setToDefault()
 }
 
 String ArduinoDataPacket::getData() const
-{ return Data; }
+{
+	return Data;
+}
 
 DataContentType ArduinoDataPacket::getContentType() const
-{ return ContentType; }
+{
+	return ContentType;
+}
 
 String ArduinoDataPacket::getBoardId() const
-{ return BoardId; }
+{
+	return BoardId;
+}
 
 int ArduinoDataPacket::getComponentId() const
-{ return ComponentId; }
+{
+	return ComponentId;
+}
 
 int ArduinoDataPacket::getPinId() const
-{ return PinId; }
+{
+	return PinId;
+}

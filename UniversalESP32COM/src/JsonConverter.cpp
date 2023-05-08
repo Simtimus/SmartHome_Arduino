@@ -206,7 +206,7 @@ ReceivedDataPacket JsonConverter::jsonToReceivedDataPacket(const String &json)
 
 	ReceivedDataPacket receivedData = ReceivedDataPacket();
 
-	JsonArray commandsArray = doc["ConnectedPins"];
+	JsonArray commandsArray = doc["Commands"];
 	for (JsonObject commandObject : commandsArray)
 	{
 		ReceivedCommand command(

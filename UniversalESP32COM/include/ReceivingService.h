@@ -24,9 +24,9 @@ public:
 	void updateBoardPinsState();
 
 private:
-	UdpCommunication udpComm;
-	EepromString eeprom;
-	Board board;
+	UdpCommunication &udpComm;
+	EepromString &eeprom;
+	Board &board;
 	bool wakedUp;
 };
 

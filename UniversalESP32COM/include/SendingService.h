@@ -30,10 +30,10 @@ public:
 
 private:
 	bool wakedUp = true;
-	UdpCommunication udpComm;
-	ComponentManager compManager;
-	ArduinoDataPacket dataPacket;
-	Board board;
+	UdpCommunication &udpComm;
+	ComponentManager &compManager;
+	ArduinoDataPacket &dataPacket;
+	Board &board;
 };
 
 #endif // SENDING_SERVICE_H

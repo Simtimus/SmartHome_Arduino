@@ -11,17 +11,17 @@
 
 class UdpCommunication
 {
-	public:
-		// Constructor
-		UdpCommunication(WiFiUDP &udp, const char *host, uint16_t port);
+public:
+	// Constructor
+	UdpCommunication(WiFiUDP &udp, const char *host, uint16_t port);
 
-		int SendMsg(String msg);
-		String ReceiveMsg();
+	int SendMsg(String msg);
+	String ReceiveMsg();
 
-	private:
-		WiFiUDP &_udp;
-		const char *_host;
-		uint16_t _port;
+private:
+	WiFiUDP &_udp;
+	const char *_host;
+	uint16_t _port;
 };
 
 #endif // UDPCOMMUNICATION_H

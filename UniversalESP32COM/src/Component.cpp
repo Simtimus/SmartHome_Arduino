@@ -7,10 +7,12 @@ Component::Component(int Id, ComponentsId ComponentId, String Description) : Id(
 
 // Getters and setters
 int Component::getId() const { return Id; }
+
 void Component::setId(const int &newId) { Id = newId; }
 
 ComponentsId Component::getComponentId() const { return ComponentId; }
-void Component::setComponentId(ComponentsId newComponentId) { ComponentId = newComponentId; }
+
+void Component::setComponentId(const ComponentsId &newComponentId) { ComponentId = newComponentId; }
 
 const PortPin &Component::getConnectedPinAtIndex(int index) const
 {
@@ -23,7 +25,8 @@ const PortPin &Component::getConnectedPinAtIndex(int index) const
 	return ConnectedPins[0];
 }
 
-PortPin *Component::getConnectedPins() { return ConnectedPins; }
+PortPin (&Component::getConnectedPins())[MAX_ITEMS] { return ConnectedPins; }
+
 int Component::getConnectedPinCount() const { return ConnectedPinCount; }
 
 bool Component::addConnectedPin(const PortPin &pin)
@@ -36,5 +39,6 @@ bool Component::addConnectedPin(const PortPin &pin)
 	return false;
 }
 
-String Component::getDescription() const { return Description; }
-void Component::setDescription(const String &newDescription) { Description = newDescription; }
+const String &Component::getDescription() const { return Description; }
+
+void Component::setDescription(String &newDescription) { Description = newDescription; }

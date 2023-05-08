@@ -1,6 +1,6 @@
 #include "ComponentManager.h"
 
-ComponentManager::ComponentManager() {}
+ComponentManager::ComponentManager() : componentsCount(0) {}
 
 void ComponentManager::Initialize()
 {
@@ -9,6 +9,10 @@ void ComponentManager::Initialize()
 		Component newComponent = Component(component, ComponentManager::ComponentsIds[component], ComponentManager::ComponentsDescription[component]);
 		for (int portPin = 0; portPin < MAX_ITEMS; portPin++)
 		{
+			// Take care
+			if (PortPinsId[component][portPin] == 0)
+				break;
+
 			newComponent.addConnectedPin(PortPin(PortPinsId[component][portPin],
 				ComponentManager::PortPinsValue[component][portPin],
 				ComponentManager::PortPinsMode[component][portPin],
@@ -18,7 +22,9 @@ void ComponentManager::Initialize()
 			if (PortPinsMode[component][portPin] == PinMode::Write)
 				pinMode(PortPinsId[component][portPin], OUTPUT);
 		}
-		addComponent(newComponent);
+
+		if (newComponent.getConnectedPinCount() != 0)
+			addComponent(newComponent);
 	}
 }
 
@@ -35,6 +41,7 @@ String ComponentManager::ComponentsDescription[MAX_ITEMS] = {
 	"Controls lamp",		  //	Component 1
 };
 
+// ID musn't be 0
 int ComponentManager::PortPinsId[MAX_ITEMS][MAX_ITEMS] = {
 	{
 		// Component 0
@@ -87,7 +94,7 @@ Component (&ComponentManager::getComponents())[MAX_ITEMS] { return components; }
 
 int ComponentManager::getComponentsCount() const { return componentsCount; }
 
-bool ComponentManager::addComponent(const Component &newComponent)
+bool ComponentManager::addComponent(Component &newComponent)
 {
 	if (componentsCount < MAX_ITEMS)
 	{

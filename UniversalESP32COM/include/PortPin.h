@@ -36,13 +36,13 @@ public:
 	void setId(int newId);
 
 	PinMode getMode() const;
-	void setMode(PinMode newMode);
+	void setMode(PinMode &newMode);
 
-	String getValue() const;
+	const String &getValue() const;
 	void setValue(const String &newValue);
 
 	ObjectValueType getValueType() const;
-	void setValueType(ObjectValueType newValueType);
+	void setValueType(ObjectValueType &newValueType);
 
 	int getParentComponentId() const;
 	void setParentComponentId(int parentComponentId);

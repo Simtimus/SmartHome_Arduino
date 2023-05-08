@@ -28,22 +28,22 @@ public:
 	void setId(const int &newId);
 
 	ComponentsId getComponentId() const;
-	void setComponentId(ComponentsId newComponentId);
+	void setComponentId(const ComponentsId &newComponentId);
 
 	const PortPin &getConnectedPinAtIndex(int index) const;
 
-	PortPin *getConnectedPins();
+	PortPin (&getConnectedPins())[MAX_ITEMS];
 	int getConnectedPinCount() const;
 	bool addConnectedPin(const PortPin &pin);
 
-	String getDescription() const;
-	void setDescription(const String &newDescription);
+	const String &getDescription() const;
+	void setDescription(String &newDescription);
 
 private:
 	int Id;
 	ComponentsId ComponentId;
 	PortPin ConnectedPins[MAX_ITEMS];
-	String Description;		// Max length 32 characters
+	String Description;
 	int ConnectedPinCount;
 };
 
