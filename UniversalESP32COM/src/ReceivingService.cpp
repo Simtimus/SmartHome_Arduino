@@ -32,7 +32,11 @@ void ReceivingService::processCommands(ReceivedDataPacket &dataPacket)
 	for (int i = 0; i < dataPacket.getCommandsCount(); i++)
 	{
 		ReceivedCommand command = dataPacket.getCommandByIndex(i);
-		if (command.getAction() == CommandAction::SetId)
+		if (command.getAction() == CommandAction::Empty)
+		{
+			board.setConnectionState(true);
+		}
+		else if (command.getAction() == CommandAction::SetId)
 		{
 			String commandValue = command.getValue();
 			board.setId(commandValue);
@@ -83,5 +87,5 @@ void ReceivingService::updateBoardPinsState()
 			}
 		}
 	}
-	Serial.println("<Arduino> Updated pins states");
+	Serial.println("<Arduino> Updated WRITING pins");
 }

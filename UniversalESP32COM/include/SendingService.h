@@ -31,11 +31,12 @@ public:
 	void selectTransmissionMode(bool (&changedPortPins)[MAX_ITEMS][MAX_ITEMS], int (&changedPortPinsCount)[MAX_ITEMS]);
 
 private:
-	bool wakedUp = true;
+	bool wakedUp;
 	UdpCommunication &udpComm;
 	ComponentManager &compManager;
 	ArduinoDataPacket &dataPacket;
 	Board &board;
+	ulong lastTransmission;
 };
 
 #endif // SENDING_SERVICE_H

@@ -1,7 +1,7 @@
 #include "SendingService.h"
 
 SendingService::SendingService(UdpCommunication &UdpComm, ComponentManager &CompManager, ArduinoDataPacket &DataPacket, Board &Board):
-	udpComm(UdpComm), compManager(CompManager), dataPacket(DataPacket), board(Board){};
+	udpComm(UdpComm), compManager(CompManager), dataPacket(DataPacket), board(Board), wakedUp(true) {}
 
 void SendingService::runService()
 {
@@ -26,11 +26,10 @@ void SendingService::runService()
 		else
 		{
 			bool changedPortPins[MAX_ITEMS][MAX_ITEMS];
-			int changedPortPinsCount[MAX_ITEMS];
+			int changedPortPinsCount[MAX_ITEMS] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			updateChangedPinValues(changedPortPins, changedPortPinsCount);
 			selectTransmissionMode(changedPortPins, changedPortPinsCount);
 		}
-		
 	}
 }
 
@@ -43,6 +42,7 @@ void SendingService::transmitBoardInfo()
 	udpComm.SendMsg(serializedClient);
 	dataPacket.setToDefault();
 	Serial.println("[SENDING] Transmited BoardInfo.");
+	lastTransmission = millis();
 }
 
 void SendingService::transmitFullDevice()
@@ -53,6 +53,7 @@ void SendingService::transmitFullDevice()
 	udpComm.SendMsg(serializedClient);
 	dataPacket.setToDefault();
 	Serial.println("[SENDING] Transmited FullDevice.");
+	lastTransmission = millis();
 }
 
 void SendingService::transmitSingleComponent(int &componentIndex, bool (&changedPortPins)[MAX_ITEMS])
@@ -74,6 +75,7 @@ void SendingService::transmitSingleComponent(int &componentIndex, bool (&changed
 	udpComm.SendMsg(serializedClient);
 	dataPacket.setToDefault();
 	Serial.println("[SENDING] Transmited SingleComponent.");
+	lastTransmission = millis();
 }
 
 void SendingService::transmitSinglePortPin(int &componentIndex, bool (&changedPortPins)[MAX_ITEMS])
@@ -93,6 +95,7 @@ void SendingService::transmitSinglePortPin(int &componentIndex, bool (&changedPo
 	udpComm.SendMsg(serializedClient);
 	dataPacket.setToDefault();
 	Serial.println("[SENDING] Transmited SinglePortPin.");
+	lastTransmission = millis();
 }
 
 void SendingService::updateChangedPinValues()
@@ -181,6 +184,7 @@ void SendingService::selectTransmissionMode(bool (&changedPortPins)[MAX_ITEMS][M
 
 	if (changedComponentCount == 1)
 	{
+		Serial.println("<Arduino> PinPort value changed");
 		if (changedPortPinsCount[lastComponentIndex] == 1)
 		{
 			transmitSinglePortPin(lastComponentIndex, changedPortPins[lastComponentIndex]);
@@ -192,13 +196,24 @@ void SendingService::selectTransmissionMode(bool (&changedPortPins)[MAX_ITEMS][M
 	}
 	else if (changedComponentCount > 1)
 	{
+		Serial.println("<Arduino> PinPort value changed");
 		transmitFullDevice();
 	}
 	else
 	{
-		if (!board.getConnectionState() && !wakedUp)
+		if (!board.getConnectionState() and !wakedUp)
 		{
+			Serial.println("[SENDING] Waiting for server response");
 			transmitFullDevice();
+		}
+		else
+		{
+			if (millis() - lastTransmission > 40000)
+			{
+				Serial.print("[SENDING] Time from last transmission: ");
+				Serial.println(millis() - lastTransmission);
+				transmitFullDevice();
+			}
 		}
 	}
 }
