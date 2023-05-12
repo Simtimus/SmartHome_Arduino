@@ -47,6 +47,7 @@ void SendingService::transmitBoardInfo()
 
 void SendingService::transmitFullDevice()
 {
+	delay(500);
 	String serializedBoard = JsonConverter::boardToJson(board);
 	dataPacket.setData(serializedBoard, DataContentType::EntireBoard, board.getId());
 	String serializedClient = JsonConverter::clientDataToJson(dataPacket);
@@ -58,7 +59,7 @@ void SendingService::transmitFullDevice()
 
 void SendingService::transmitSingleComponent(int &componentIndex, bool (&changedPortPins)[MAX_ITEMS])
 {
-	Component existingComponent = board.getComponentAtIndex(componentIndex);
+	Component &existingComponent = board.getComponentAtIndex(componentIndex);
 	Component newComponent = Component(componentIndex, existingComponent.getComponentType(), existingComponent.getDescription());
 
 	for (int i = 0; i < existingComponent.getConnectedPinCount(); i++)
@@ -81,7 +82,7 @@ void SendingService::transmitSingleComponent(int &componentIndex, bool (&changed
 void SendingService::transmitSinglePortPin(int &componentIndex, bool (&changedPortPins)[MAX_ITEMS])
 {
 	int portPinIndex = 0;
-	for (int i = 0; i > MAX_ITEMS; i++)
+	for (int i = 0; i < MAX_ITEMS; i++)
 	{
 		if (changedPortPins[i])
 		{
@@ -89,8 +90,16 @@ void SendingService::transmitSinglePortPin(int &componentIndex, bool (&changedPo
 			break;
 		}
 	}
-	String serializedPortPin = JsonConverter::portPinToJson(board.getComponentAtIndex(componentIndex).getConnectedPinAtIndex(portPinIndex));
-	dataPacket.setData(serializedPortPin, board.getId(), componentIndex, portPinIndex);
+
+	Component &component = board.getComponentAtIndex(componentIndex);
+	PortPin &portPin = component.getConnectedPinAtIndex(portPinIndex);
+
+	Serial.print("<DEBUG> Component: "); Serial.print(componentIndex);
+	Serial.print(" PinId: "); Serial.print(portPin.getId());
+	Serial.print(" Value: "); Serial.println(portPin.getValue());
+
+	String serializedPortPin = JsonConverter::portPinToJson(portPin);
+	dataPacket.setData(serializedPortPin, board.getId(), componentIndex, portPin.getId());
 	String serializedClient = JsonConverter::clientDataToJson(dataPacket);
 	udpComm.SendMsg(serializedClient);
 	dataPacket.setToDefault();
@@ -123,7 +132,7 @@ void SendingService::updateChangedPinValues()
 			}
 		}
 	}
-	Serial.println("<Arduino> Updated READING Pins");
+	Serial.println("<Arduino> Initial updated READING Pins");
 }
 
 void SendingService::updateChangedPinValues(bool (&changedPortPins)[MAX_ITEMS][MAX_ITEMS], int (&changedPortPinsCount)[MAX_ITEMS])
@@ -140,7 +149,9 @@ void SendingService::updateChangedPinValues(bool (&changedPortPins)[MAX_ITEMS][M
 		for (int pin = 0; pin < pinCount; pin++)
 		{
 			String readedValue;
-			PortPin &portPin = component.getConnectedPinAtIndex(pin);
+			changedPortPins[comp][pin] = false;
+
+				PortPin &portPin = component.getConnectedPinAtIndex(pin);
 			if (portPin.getMode() == PinMode::Read)
 			{
 				if (portPin.getValueType() == ObjectValueType::Boolean)
@@ -165,7 +176,10 @@ void SendingService::updateChangedPinValues(bool (&changedPortPins)[MAX_ITEMS][M
 		}
 		changedPortPinsCount[comp] = changedPinsCount;
 	}
-	Serial.println("<Arduino> Updated READING Pins");
+	if (componentChanged)
+	{
+		Serial.println("<Arduino> Updated READING Pins");
+	}
 }
 
 void SendingService::selectTransmissionMode(bool (&changedPortPins)[MAX_ITEMS][MAX_ITEMS], int (&changedPortPinsCount)[MAX_ITEMS])
@@ -203,8 +217,11 @@ void SendingService::selectTransmissionMode(bool (&changedPortPins)[MAX_ITEMS][M
 	{
 		if (!board.getConnectionState() and !wakedUp)
 		{
-			Serial.println("[SENDING] Waiting for server response");
-			transmitFullDevice();
+			if (millis() - lastTransmission > 5000)
+			{
+				Serial.println("[SENDING] Waiting for server response");
+				transmitFullDevice();
+			}
 		}
 		else
 		{

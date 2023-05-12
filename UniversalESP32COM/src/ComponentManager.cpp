@@ -60,7 +60,7 @@ int ComponentManager::PortPinsId[MAX_ITEMS][MAX_ITEMS] = {
 String ComponentManager::PortPinsValue[MAX_ITEMS][MAX_ITEMS] = {
 	{
 		// Component 0
-		"0", // PortPin 0
+		"751", // PortPin 0
 	},
 	{
 		// Component 1

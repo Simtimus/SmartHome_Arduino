@@ -87,6 +87,4 @@ void loop()
 {
   Sending.runService();
   Receiving.runService();
-  delay(1000);
-  Serial.println();
 }
