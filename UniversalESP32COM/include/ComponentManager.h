@@ -20,6 +20,7 @@ public:
 
 	static int PortPinsId[MAX_ITEMS][MAX_ITEMS];
 	static String PortPinsValue[MAX_ITEMS][MAX_ITEMS];
+	static PinType PortPinsType[MAX_ITEMS][MAX_ITEMS];
 	static PinMode PortPinsMode[MAX_ITEMS][MAX_ITEMS];
 	static ObjectValueType PortPinsValueType[MAX_ITEMS][MAX_ITEMS];
 

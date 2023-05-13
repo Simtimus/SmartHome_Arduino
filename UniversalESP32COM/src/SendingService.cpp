@@ -47,7 +47,7 @@ void SendingService::transmitBoardInfo()
 
 void SendingService::transmitFullDevice()
 {
-	delay(500);
+	delay(100);
 	String serializedBoard = JsonConverter::boardToJson(board);
 	dataPacket.setData(serializedBoard, DataContentType::EntireBoard, board.getId());
 	String serializedClient = JsonConverter::clientDataToJson(dataPacket);
@@ -151,13 +151,10 @@ void SendingService::updateChangedPinValues(bool (&changedPortPins)[MAX_ITEMS][M
 			String readedValue;
 			changedPortPins[comp][pin] = false;
 
-				PortPin &portPin = component.getConnectedPinAtIndex(pin);
+			PortPin &portPin = component.getConnectedPinAtIndex(pin);
 			if (portPin.getMode() == PinMode::Read)
 			{
-				if (portPin.getValueType() == ObjectValueType::Boolean)
-					readedValue = String(digitalRead(portPin.getId()));
-				else
-					readedValue = String(digitalRead(portPin.getId()));
+				readedValue = component.readPinValue(portPin);
 
 				if (portPin.getValue() != readedValue)
 				{

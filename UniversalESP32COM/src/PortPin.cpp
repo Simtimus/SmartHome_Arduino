@@ -1,13 +1,13 @@
 #include "PortPin.h"
 
 // Constructor
-PortPin::PortPin() : Id(0), Mode(PinMode::Read), ValueType(ObjectValueType::Integer) {}
+PortPin::PortPin() : Id(0), Type(PinType::Real), Mode(PinMode::Read), ValueType(ObjectValueType::Integer) {}
 
-PortPin::PortPin(int Id, PinMode PinMode, ObjectValueType ValueType):
-	Id(Id), Value(""), Mode(PinMode), ValueType(ValueType) {}
+PortPin::PortPin(int Id, PinType PinType, PinMode PinMode, ObjectValueType ValueType):
+	Id(Id), Value(""), Type(PinType), Mode(PinMode), ValueType(ValueType) {}
 
-PortPin::PortPin(int &Id, String &InitialValue, PinMode &PinMode, ObjectValueType &ValueType, int ParentId):
-	Id(Id), Value(InitialValue), Mode(PinMode), ValueType(ValueType), ParentComponentId(ParentId) {}
+PortPin::PortPin(int &Id, String &InitialValue, PinType PinType,PinMode &PinMode, ObjectValueType &ValueType, int ParentId):
+	Id(Id), Value(InitialValue), Type(PinType), Mode(PinMode), ValueType(ValueType), ParentComponentId(ParentId) {}
 
 // Getters and setters
 int PortPin::getId() const
@@ -15,6 +15,16 @@ int PortPin::getId() const
 
 void PortPin::setId(int &newId)
 { Id = newId; }
+
+PinType PortPin::getType() const
+{
+	return Type;
+}
+
+void PortPin::setType(PinType &newType)
+{
+	Type = newType;
+}
 
 PinMode PortPin::getMode() const
 { return Mode; }
@@ -39,3 +49,23 @@ int PortPin::getParentComponentId() const
 
 void PortPin::setParentComponentId(int parentComponentId)
 { ParentComponentId = parentComponentId; }
+
+int PortPin::getOtherComponentId() const
+{
+	return OtherComponentId;
+}
+
+void PortPin::setOtherComponentId(int newId)
+{
+	OtherComponentId = newId;
+}
+
+int PortPin::getOtherComponentSequence() const
+{
+	return OtherComponentSequence;
+}
+
+void PortPin::setOtherComponentSequence(int newSequence)
+{
+	OtherComponentSequence = newSequence;
+}

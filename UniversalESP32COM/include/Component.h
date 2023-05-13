@@ -5,14 +5,20 @@
 #include <Arduino.h>
 // Project Libraries
 #include "PortPin.h"
+#include "DHTWrapper.h"
 
 constexpr int MAX_ITEMS = 10; // Define a constant for the maximum number of array items
 
 enum class ComponentTypes
 {
-	Unknown,
+	Undefined,
 	LightSensor,
 	Relay,
+	Button,
+	LedDiode,
+	HumiditySensor,
+	GasSensor,
+	InfraredSensor,
 };
 
 class Component
@@ -43,12 +49,26 @@ public:
 	const String &getDescription() const;
 	void setDescription(String &newDescription);
 
+	int getOtherComponentCount() const;
+	
+	int getOtherComponentIdAtIndex(int index);
+
+	String getValueByIndexAndSequence(int Index, int Sequence);
+
+	void manageDHTComponent(PortPin &pin);
+
+	String readPinValue(PortPin &pin);
+
 private:
 	int Id;
-	ComponentTypes ComponentId;
+	ComponentTypes ComponentType;
 	PortPin ConnectedPins[MAX_ITEMS];
 	String Description;
 	int ConnectedPinCount;
+
+	int OtherComponentCount;
+
+	DHTWrapper DHTComponents[MAX_ITEMS];
 };
 
 #endif // COMPONENT_H

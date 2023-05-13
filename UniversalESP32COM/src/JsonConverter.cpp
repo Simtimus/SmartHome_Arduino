@@ -9,6 +9,7 @@ String JsonConverter::portPinToJson(const PortPin &portPin)
 	DynamicJsonDocument doc(portPinDocSize * 1.5);
 
 	doc["Id"] = portPin.getId();
+	doc["Type"] = static_cast<int>(portPin.getType());
 	doc["Mode"] = static_cast<int>(portPin.getMode());
 	doc["Value"] = portPin.getValue();
 	doc["ValueType"] = static_cast<int>(portPin.getValueType());
@@ -73,6 +74,7 @@ String JsonConverter::boardToJson(const Board &board)
 			const PortPin &pin = component.getConnectedPinAtIndex(j);
 
 			connectedPinObj["Id"] = pin.getId();
+			connectedPinObj["Type"] = static_cast<int>(pin.getType());
 			connectedPinObj["Mode"] = static_cast<int>(pin.getMode());
 			connectedPinObj["Value"] = pin.getValue();
 			connectedPinObj["ValueType"] = static_cast<int>(pin.getValueType());
@@ -129,6 +131,7 @@ Board JsonConverter::jsonToBoard(const String &json)
 		{
 			PortPin pin(
 				connectedPinObj["Id"].as<int>(),
+				static_cast<PinType>(connectedPinObj["Type"].as<int>()),
 				static_cast<PinMode>(connectedPinObj["Mode"].as<int>()),
 				static_cast<ObjectValueType>(connectedPinObj["ValueType"].as<int>()));
 			pin.setValue(connectedPinObj["Value"].as<String>());
@@ -158,6 +161,7 @@ Component JsonConverter::jsonToComponent(const String &json)
 	{
 		PortPin pin(
 			connectedPinObj["Id"].as<int>(),
+			static_cast<PinType>(connectedPinObj["Type"].as<int>()),
 			static_cast<PinMode>(connectedPinObj["Mode"].as<int>()),
 			static_cast<ObjectValueType>(connectedPinObj["ValueType"].as<int>()));
 		pin.setValue(connectedPinObj["Value"].as<String>());
@@ -176,6 +180,7 @@ PortPin JsonConverter::jsonToPortPin(const String &json)
 
 	PortPin pin(
 		doc["Id"].as<int>(),
+		static_cast<PinType>(doc["Type"].as<int>()),
 		static_cast<PinMode>(doc["Mode"].as<int>()),
 		static_cast<ObjectValueType>(doc["ValueType"].as<int>()));
 	pin.setValue(doc["Value"].as<String>());
