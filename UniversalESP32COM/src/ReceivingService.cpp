@@ -35,6 +35,7 @@ void ReceivingService::processCommands(ReceivedDataPacket &dataPacket)
 		if (command.getAction() == CommandAction::Empty)
 		{
 			board.setConnectionState(true);
+			Serial.println("[RECEIVING] Received EMPTY Command");
 		}
 		else if (command.getAction() == CommandAction::SetId)
 		{
@@ -45,6 +46,7 @@ void ReceivingService::processCommands(ReceivedDataPacket &dataPacket)
 			{
 				eeprom.write(commandValue);
 			}
+			Serial.println("[RECEIVING] Received SET ID Command");
 		}
 		else if (command.getAction() == CommandAction::SetValue)
 		{
@@ -53,9 +55,10 @@ void ReceivingService::processCommands(ReceivedDataPacket &dataPacket)
 
 			if (componentId != -1 && pinId != -1)
 			{
-				Component component = board.getComponentAtIndex(componentId);
-				PortPin portPin = component.getConnectedPinAtIndex(pinId);
+				Component &component = board.getComponentAtIndex(componentId);
+				PortPin &portPin = component.getConnectedPinAtIndex(pinId);
 				portPin.setValue(command.getValue());
+				Serial.println("[RECEIVING] Received SET VALUE Command");
 			}
 		}
 	}
@@ -82,7 +85,20 @@ void ReceivingService::updateBoardPinsState()
 				}
 				else if (pinValueType == ObjectValueType::Boolean)
 				{
-					digitalWrite(portPin.getId(), portPin.getValue().toInt());
+					Serial.println(portPin.getValue());
+					if (portPin.getValue() == "True")
+					{
+						digitalWrite(portPin.getId(), HIGH);
+					}
+					else if (portPin.getValue() == "False")
+					{
+						digitalWrite(portPin.getId(), LOW);
+					}
+					else
+					{
+						digitalWrite(portPin.getId(), portPin.getValue().toInt());
+					}
+					
 				}
 			}
 		}

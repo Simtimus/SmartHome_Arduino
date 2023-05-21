@@ -56,7 +56,7 @@ ComponentTypes ComponentManager::ComponentsIds[MAX_ITEMS] = {
 };
 
 String ComponentManager::ComponentsDescription[MAX_ITEMS] = {
-	"Room light",					 //	Component 0
+	"Measuring Room light",			 //	Component 0
 	"Controls room lamp",			 //	Component 1
 	"Room temperature and humidity", //	Component 2
 };
@@ -65,7 +65,7 @@ String ComponentManager::ComponentsDescription[MAX_ITEMS] = {
 int ComponentManager::PortPinsId[MAX_ITEMS][MAX_ITEMS] = {
 	{
 		// Component 0
-		18, // PortPin 0 - Light Sensor
+		33, // PortPin 0 - Light Sensor
 	},
 	{
 		// Component 1

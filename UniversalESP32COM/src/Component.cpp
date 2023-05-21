@@ -50,6 +50,13 @@ bool Component::addConnectedPin(PortPin &pin)
 		{
 			int newId = ConnectedPinCount + 100;
 			pin.setId(newId);
+
+			// Serial.print("<DEBUG> Pin ID: ");
+			// Serial.print(pin.getId());
+			// Serial.print(" | Pin OthCmp ID: ");
+			// Serial.print(pin.getOtherComponentId());
+			// Serial.print(" | Pin OthCmp Seq: ");
+			// Serial.println(pin.getOtherComponentSequence());
 		}
 		ConnectedPins[ConnectedPinCount++] = pin;
 		
@@ -104,6 +111,8 @@ String Component::getValueByIndexAndSequence(int Index, int Sequence)
 
 void Component::manageDHTComponent(PortPin &pin)
 {
+	// Serial.print("<DEBUG> OthCmp Count = ");
+	// Serial.println(OtherComponentCount);
 	if (OtherComponentCount == 0)
 	{
 		DHTComponents[OtherComponentCount].initialize(pin.getId(), DHT22);
@@ -113,16 +122,20 @@ void Component::manageDHTComponent(PortPin &pin)
 	else
 	{
 		int index = -1;
+		int pinOtherComponentId = pin.getId();
 		for (int i = 0; i < OtherComponentCount; i++)
 		{
-			if (DHTComponents[i].getPortPinId() == pin.getId())
+			if (DHTComponents[i].getPortPinId() == pinOtherComponentId)
 			{
 				index = i;
 				break;
 			}
 		}
 
-		if (index != 1)
+		// Serial.print("<DEBUG> DHT List Index: ");
+		// Serial.println(index);
+
+		if (index != -1)
 		{
 			pin.setOtherComponentId(DHTComponents[index].getPortPinId());
 			pin.setOtherComponentSequence(DHTComponents[index].getPinCount());
@@ -143,24 +156,45 @@ String Component::readPinValue(PortPin &pin)
 		if (pin.getValueType() == ObjectValueType::Boolean)
 			return String(digitalRead(pin.getId()));
 		else
-			return String(analogRead(pin.getId())); // TODO: Change to analogRead
+			return String(analogRead(pin.getId()));
 	}
 	else
 	{
+		int pinId = pin.getId();
+		int pinOthCmpId = pin.getOtherComponentId();
 		if (ComponentType == ComponentTypes::HumiditySensor)
 		{
 			int index = -1;
 			for (int i = 0; i < OtherComponentCount; i++)
 			{
-				if (getOtherComponentIdAtIndex(i) == Id)
+				// Serial.print("<DEBUG> OthCmp Id: ");
+				// Serial.print(getOtherComponentIdAtIndex(i));
+				// Serial.print(" | PinId: ");
+				// Serial.print(pinId);
+				// Serial.print(" | Pin OthCmp Id: ");
+				// Serial.println(pinOthCmpId);
+
+				if (getOtherComponentIdAtIndex(i) == pinOthCmpId)
 				{
 					index = i;
 					break;
 				}
+				delay(500);
 			}
 
-			if (index != 1)
+			if (index != -1)
 			{
+				// Serial.print("<DEBUG> Index: ");
+				// Serial.print(index);
+				// Serial.print(" | Virtual ID: ");
+				// Serial.print(pin.getId());
+				// Serial.print(" | Comp ID: ");
+				// Serial.print(pin.getOtherComponentId());
+				// Serial.print(" | Seq: ");
+				// Serial.print(pin.getOtherComponentSequence());
+				// Serial.print(" | Value: ");
+				// Serial.println(getValueByIndexAndSequence(index, pin.getOtherComponentSequence()));
+
 				return getValueByIndexAndSequence(index, pin.getOtherComponentSequence());
 			}
 			else

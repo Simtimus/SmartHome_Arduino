@@ -47,7 +47,6 @@ void SendingService::transmitBoardInfo()
 
 void SendingService::transmitFullDevice()
 {
-	delay(100);
 	String serializedBoard = JsonConverter::boardToJson(board);
 	dataPacket.setData(serializedBoard, DataContentType::EntireBoard, board.getId());
 	String serializedClient = JsonConverter::clientDataToJson(dataPacket);
@@ -55,28 +54,30 @@ void SendingService::transmitFullDevice()
 	dataPacket.setToDefault();
 	Serial.println("[SENDING] Transmited FullDevice.");
 	lastTransmission = millis();
+	delay(200);
 }
 
 void SendingService::transmitSingleComponent(int &componentIndex, bool (&changedPortPins)[MAX_ITEMS])
 {
 	Component &existingComponent = board.getComponentAtIndex(componentIndex);
-	Component newComponent = Component(componentIndex, existingComponent.getComponentType(), existingComponent.getDescription());
+	// Component newComponent = Component(componentIndex, existingComponent.getComponentType(), existingComponent.getDescription());
 
-	for (int i = 0; i < existingComponent.getConnectedPinCount(); i++)
-	{
-		if (changedPortPins[i])
-		{
-			newComponent.addConnectedPin(existingComponent.getConnectedPinAtIndex(i));
-		}
-	}
+	// for (int i = 0; i < existingComponent.getConnectedPinCount(); i++)
+	// {
+	// 	if (changedPortPins[i])
+	// 	{
+	// 		newComponent.addConnectedPin(existingComponent.getConnectedPinAtIndex(i));
+	// 	}
+	// }
 
-	String serializedPortPin = JsonConverter::componentToJson(newComponent);
+	String serializedPortPin = JsonConverter::componentToJson(existingComponent);
 	dataPacket.setData(serializedPortPin, board.getId(), componentIndex);
 	String serializedClient = JsonConverter::clientDataToJson(dataPacket);
 	udpComm.SendMsg(serializedClient);
 	dataPacket.setToDefault();
 	Serial.println("[SENDING] Transmited SingleComponent.");
 	lastTransmission = millis();
+	delay(100);
 }
 
 void SendingService::transmitSinglePortPin(int &componentIndex, bool (&changedPortPins)[MAX_ITEMS])
@@ -105,6 +106,7 @@ void SendingService::transmitSinglePortPin(int &componentIndex, bool (&changedPo
 	dataPacket.setToDefault();
 	Serial.println("[SENDING] Transmited SinglePortPin.");
 	lastTransmission = millis();
+	delay(100);
 }
 
 void SendingService::updateChangedPinValues()

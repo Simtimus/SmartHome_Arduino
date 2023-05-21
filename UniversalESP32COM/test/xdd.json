@@ -7,12 +7,13 @@
 		{
 			"Id": 0,
 			"ComponentType": 1,
-			"Description": "Located in living room",
+			"Description": "Measuring Room light",
 			"ConnectedPins": [
 				{
-					"Id": 3,
+					"Id": 33,
+					"Type": 0,
 					"Mode": 0,
-					"Value": "0",
+					"Value": "3663",
 					"ValueType": 1,
 					"ParentComponentId": 0
 				}
@@ -21,10 +22,11 @@
 		{
 			"Id": 1,
 			"ComponentType": 2,
-			"Description": "Controls lamp",
+			"Description": "Controls room lamp",
 			"ConnectedPins": [
 				{
 					"Id": 4,
+					"Type": 0,
 					"Mode": 1,
 					"Value": "0",
 					"ValueType": 3,
@@ -32,10 +34,34 @@
 				},
 				{
 					"Id": 5,
+					"Type": 0,
 					"Mode": 0,
-					"Value": "0",
+					"Value": "1",
 					"ValueType": 3,
 					"ParentComponentId": 1
+				}
+			]
+		},
+		{
+			"Id": 2,
+			"ComponentType": 5,
+			"Description": "Room temperature and humidity",
+			"ConnectedPins": [
+				{
+					"Id": 100,
+					"Type": 1,
+					"Mode": 0,
+					"Value": "<ERROR> DHT has not been initialized yet",
+					"ValueType": 2,
+					"ParentComponentId": 2
+				},
+				{
+					"Id": 101,
+					"Type": 1,
+					"Mode": 0,
+					"Value": "<ERROR> DHT has not been initialized yet",
+					"ValueType": 2,
+					"ParentComponentId": 2
 				}
 			]
 		}

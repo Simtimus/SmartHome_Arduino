@@ -20,7 +20,7 @@
 const char *ssid = "Simtimus Network";
 const char *password = "ureshiumaewo";
 
-const char *host = "192.168.126.239";
+const char *host = "192.168.194.239";
 const uint16_t port = 8080;
 const uint16_t localPort = 4210;
 

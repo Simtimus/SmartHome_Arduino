@@ -42,10 +42,16 @@ String DHTWrapper::callFunctionBySequence(int Index)
 	switch (Index)
 	{
 	case 0:
-		return readTemperature();
+		if (readTemperature() != "nan")
+			return readTemperature();
+		else
+			return "-1";
 
 	case 1:
-		return readHumidity();
+		if (readHumidity() != "nan")
+			return readHumidity();
+		else
+			return "-1";
 
 	default:
 		return "Index " + String(Index) + " at CallFunction";
