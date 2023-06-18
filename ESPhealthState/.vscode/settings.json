@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"&.pas": "objectpascal",
+		"&.wsb": "xml",
+		"limits": "cpp",
+		"type_traits": "cpp"
+	}
+}

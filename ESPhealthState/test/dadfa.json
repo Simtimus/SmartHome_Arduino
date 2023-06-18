@@ -1,0 +1,769 @@
+{
+	"Id": "00000000-0000-0000-0000-000000000000",
+	"Name": "00000000-0000-0000-0000-00000000",
+	"Components": [
+		{
+			"Id": 0,
+			"ComponentId": 0,
+			"ConnectedPins": [
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				}
+			],
+			"Description": "00000000-0000-0000-0000-00000000"
+		},{
+			"Id": 0,
+			"ComponentId": 0,
+			"ConnectedPins": [
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				}
+			],
+			"Description": "00000000-0000-0000-0000-00000000"
+		},{
+			"Id": 0,
+			"ComponentId": 0,
+			"ConnectedPins": [
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				}
+			],
+			"Description": "00000000-0000-0000-0000-00000000"
+		},{
+			"Id": 0,
+			"ComponentId": 0,
+			"ConnectedPins": [
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				}
+			],
+			"Description": "00000000-0000-0000-0000-00000000"
+		},{
+			"Id": 0,
+			"ComponentId": 0,
+			"ConnectedPins": [
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				}
+			],
+			"Description": "00000000-0000-0000-0000-00000000"
+		},{
+			"Id": 0,
+			"ComponentId": 0,
+			"ConnectedPins": [
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				}
+			],
+			"Description": "00000000-0000-0000-0000-00000000"
+		},{
+			"Id": 0,
+			"ComponentId": 0,
+			"ConnectedPins": [
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				}
+			],
+			"Description": "00000000-0000-0000-0000-00000000"
+		},{
+			"Id": 0,
+			"ComponentId": 0,
+			"ConnectedPins": [
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				}
+			],
+			"Description": "00000000-0000-0000-0000-00000000"
+		},{
+			"Id": 0,
+			"ComponentId": 0,
+			"ConnectedPins": [
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				}
+			],
+			"Description": "00000000-0000-0000-0000-00000000"
+		},{
+			"Id": 0,
+			"ComponentId": 0,
+			"ConnectedPins": [
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				},
+				{
+					"Id": 0,
+					"Mode": 0,
+					"Value": "false",
+					"ValueType": 0,
+					"parentComponentId": 0
+				}
+			],
+			"Description": "00000000-0000-0000-0000-00000000"
+		}
+	],
+	"Model": "00000000-0000-0000-0000-00000000",
+	"Description": "00000000-0000-0000-0000-00000000"
+}
